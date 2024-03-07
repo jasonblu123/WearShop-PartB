@@ -12,7 +12,8 @@ app.use(express.urlencoded({extended: false}))
 app.use(express.static("public"));
 
 // connect to the mongodb database
-connectDB()
+// do not connect db while deployed instead use static data
+// connectDB()
 
 app.use('/api/items', cors(), require("./routes/items"))
 app.use('/api/payment', cors(), require("./routes/payment"))
