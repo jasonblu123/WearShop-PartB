@@ -11,7 +11,8 @@ const ProductView = (props) => {
 
     useEffect(() => {
         window.scrollTo(0, 0)
-        axios.get("http://localhost:5050/api/items")
+        // axios.get("http://localhost:5050/api/items")
+        axios.get("../asset/items.json")
             .then(res => {
                 setItem(res.data.filter((item) => item._id === param.id))
                 setLoading(false)
