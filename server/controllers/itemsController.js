@@ -3,7 +3,7 @@ const itemsCollection = require("../itemsCollection")
 
 /* GET request handler */
 const getItem = async (req, res) => {
-    const items = await Item.find()
+    // const items = await Item.find()
     // res.json(items)
     // console.log(itemsCollection)
     res.json(itemsCollection)
