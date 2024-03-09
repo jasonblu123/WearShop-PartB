@@ -4,6 +4,8 @@ import axios from 'axios'
 import ReactLoading from 'react-loading';
 import Category from '../components/Category/Category';
 
+import items from '../asset/items.json';
+
 const CategoryView = () => {
     const param = useParams()
     const [ menItems, setMenItems ] = useState()
@@ -11,18 +13,26 @@ const CategoryView = () => {
     const [ kidsItems, setKidsItems ] = useState()
     const [ loading , setLoading ] = useState(true) 
 
-    useEffect(() => {
-        axios.get("http://localhost:5050/api/items")
-            .then(res => {
-                setMenItems(res.data.filter((item) => item.category === "men"))
-                setKidsItems(res.data.filter((item) => item.category === "kids" ))
-                setWomenItems(res.data.filter((item) => item.category === "women")) 
-                setLoading(false)
-            })
-            .catch(err => console.log(err))
+    // useEffect(() => {
+    //     axios.get("http://localhost:5050/api/items")
+    //         .then(res => {
+    //             setMenItems(res.data.filter((item) => item.category === "men"))
+    //             setKidsItems(res.data.filter((item) => item.category === "kids" ))
+    //             setWomenItems(res.data.filter((item) => item.category === "women")) 
+    //             setLoading(false)
+    //         })
+    //         .catch(err => console.log(err))
 
-        window.scrollTo(0, 0)
-    }, [param.id])
+    //     window.scrollTo(0, 0)
+    // }, [param.id])
+
+    useEffect(() => {
+        setMenItems(items.filter((item) => item.category === "men"));
+        setKidsItems(items.filter((item) => item.category === "kids"));
+        setWomenItems(items.filter((item) => item.category === "women"));
+        setLoading(false);
+        window.scrollTo(0, 0);
+    }, [param.id]);
     
     return ( 
         <div className='d-flex min-vh-100 w-100 justify-content-center align-items-center m-auto'>
