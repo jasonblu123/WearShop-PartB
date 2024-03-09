@@ -3,6 +3,8 @@ import axios from 'axios';
 import RelatedCard from '../../Card/RelatedCard/RelatedCard';
 import './Related.css';
 
+import items from '../../../asset/items.json';
+
 const Related = (props) => {
     
     const [ menItems, setMenItems ] = useState()
@@ -10,15 +12,21 @@ const Related = (props) => {
     const [ kidsItems, setKidsItems ] = useState()
 
     
+    // useEffect(() => {
+    //     axios.get("http://localhost:5050/api/items")
+    //         .then(res => {
+    //             setMenItems(res.data.filter((item) => item.category === "men"))
+    //             setKidsItems(res.data.filter((item) => item.category === "kids" ))
+    //             setWomenItems(res.data.filter((item) => item.category === "women"))
+    //         })
+    //         .catch(err => console.log(err))
+    // }, [])
+
     useEffect(() => {
-        axios.get("http://localhost:5050/api/items")
-            .then(res => {
-                setMenItems(res.data.filter((item) => item.category === "men"))
-                setKidsItems(res.data.filter((item) => item.category === "kids" ))
-                setWomenItems(res.data.filter((item) => item.category === "women"))
-            })
-            .catch(err => console.log(err))
-    }, [])
+        setMenItems(items.filter((item) => item.category === "men"));
+        setKidsItems(items.filter((item) => item.category === "kids"));
+        setWomenItems(items.filter((item) => item.category === "women"));
+    }, []);
     
     return ( 
             <div className="related__products">
